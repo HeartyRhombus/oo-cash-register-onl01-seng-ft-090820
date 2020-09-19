@@ -1,18 +1,16 @@
 class CashRegister
   attr_accessor :total, :discount, :item, :price, :quantity
 
-  @@checkout = {}
-
   def initialize(total = 0)
     @total = total
     @discount = 20.0
+    @items = []
 
   end
 
-  def add_item(item, price, quantity = 1)
-    # @@checkout[:item] = (price *= quantity)
-    quantity.times {@@checkout.store(item, price)}
-    @total += @@checkout.values.inject(0){|a, b| a + b}
+  def add_item(item, price, quantity = 0)
+    if quantity > 0
+      self.total += price * quantity
   end
 
   def apply_discount
