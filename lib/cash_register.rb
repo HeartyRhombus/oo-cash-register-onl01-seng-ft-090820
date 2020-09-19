@@ -11,6 +11,12 @@ class CashRegister
   def add_item(item, price, quantity = 0)
     if quantity > 0
       self.total += price * quantity
+      @items << ("#{item}," * quantity).split(",")
+      @items.flatten!
+    else
+      self.total += price
+      @items << item
+    end
   end
 
   def apply_discount
